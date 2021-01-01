@@ -10,8 +10,7 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-        
-        ListNode o = null;
+          ListNode o = null;
         ListNode p= head;
         if(p==null)
             return head;
