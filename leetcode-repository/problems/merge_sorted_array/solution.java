@@ -1,23 +1,29 @@
 class Solution {
-     public static void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i=0, j=0,k=0;
-        while(k<m && j<n){
-            if(nums1[i]>=nums2[j]){
-                insert(nums2[j++], i++, nums1);
-            } else {
-                i++;
-                k++;
-            }
-        }
-        while(i<m+n && j<n){
-            nums1[i++]= nums2[j++];
-        }
-    }
+       public void merge(int[] sol, int m, int[] nums2, int n) {
+        int[] nums1= Arrays.copyOfRange(sol, 0, m+n);
+        int i=0,j=0, k=0;
 
-    public static void insert(int val, int index, int[] a){
-        for(int i=a.length-1;i>index;i--){
-            a[i]=a[i-1];
+        while(i<m && j<n){
+            if(nums1[i]>nums2[j]){
+                sol[k]=nums2[j];
+                j++;
+            } else {
+                sol[k]=nums1[i];
+                i++;
+            }
+            k++;
         }
-        a[index]=val;
+
+        while (i<m){
+            sol[k]=nums1[i];
+            i++;
+            k++;
+        }
+
+        while (j<n) {
+            sol[k] = nums2[j];
+            j++;
+            k++;
+        }
     }
 }
