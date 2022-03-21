@@ -1,18 +1,15 @@
 class Solution {
     public void reverseString(char[] s) {
-        int low =0, high = s.length-1;
-        
-        helper(s, low, high);
+        replace(0, s.length-1, s);
+        System.out.println(s);
     }
-    
-  
-    public void helper(char[] s, int low, int high){
-        if(low>=high)
-            return;
-        
-        char t = s[low];
-        s[low++] = s[high];
-        s[high--]= t;
-        helper(s, low, high);
-    }
+	
+    private void replace(int i, int j, char[] s) {
+		if(i>=j)
+			return;
+		char t =s[i];
+		s[i]=s[j];
+		s[j]=t;
+		replace(i+1, j-1, s);
+	}
 }
