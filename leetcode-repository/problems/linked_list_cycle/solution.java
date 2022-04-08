@@ -11,25 +11,23 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
+
         ListNode p = head;
         ListNode q = head;
-        
-        if(p!=null && p.next!=null){
-            q=p.next;
-        } else {
+
+        if(p==null || p.next==null){
             return false;
         }
-        try{
-        while(p!=null && q!=null){
-            if(p == q){
+
+        q=p.next.next;
+        while (p!=null && q!=null){
+            if(p==q)
                 return true;
-            } else {
+            else if (q.next!=null){
                 p=p.next;
-                q= q.next.next;
-            }
-        }
-        } catch(Exception e){
-            return false;
+                q=q.next.next;
+            } else
+                return false;
         }
         return false;
     }
