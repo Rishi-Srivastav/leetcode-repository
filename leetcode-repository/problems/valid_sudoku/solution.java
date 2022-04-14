@@ -38,20 +38,6 @@ class Solution {
 				}	
 			}
 		}
-
-		for (int j = 0; j < n; j++) {
-			char[] c19 = new char[9];
-			for (int i = 0; i < m; i++) {
-				if (board[i][j] == '.') {
-					continue;
-				}
-				if (c19[board[i][j] - '0' - 1] == 0) {
-					c19[board[i][j] - '0' - 1]++;
-				} else {
-					return false;
-				}
-			}
-		}
 		return true;
 	}
 }
