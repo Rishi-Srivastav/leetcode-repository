@@ -5,26 +5,21 @@ class Solution {
         if(sr>m || sc>n || image[sr][sc]==newColor)
             return image;
         
-        int pixColor = image[sr][sc];
-        
-        colorIt(image, sr,sc,newColor,pixColor);
+        fill(image, sr, sc, newColor, image[sr][sc]);
         return image;
-        
-        
     }
     
-    public void colorIt(int[][] image, int sr, int sc, int newColor, int pixColor){
-        if(sr==-1 || sc==-1 || sr==image.length || sc==image[0].length || image[sr][sc]!=pixColor ){
+    public void fill(int[][] image, int sr, int sc, int newColor, int oldColor){
+        if(sr==-1 || sc==-1 || sr==image.length || sc==image[0].length || image[sr][sc]!=oldColor)
             return;
-        }
         
-        if(image[sr][sc]==pixColor){
-            image[sr][sc]=newColor;
+        if(image[sr][sc]==oldColor){
+            image[sr][sc]=newColor;     
         }
-        
-        colorIt(image, sr-1, sc, newColor, pixColor);
-        colorIt(image, sr, sc-1, newColor, pixColor);
-        colorIt(image, sr, sc+1, newColor, pixColor);
-        colorIt(image, sr+1, sc, newColor, pixColor);
+       
+        fill(image, sr-1, sc, newColor,oldColor);
+        fill(image, sr+1, sc, newColor, oldColor);
+        fill(image, sr, sc-1, newColor, oldColor);
+        fill(image, sr, sc+1, newColor, oldColor);
     }
 }
