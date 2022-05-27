@@ -1,13 +1,15 @@
 class Solution {
     public void reverseString(char[] s) {
-        int end=s.length-1;
-        int start=0;
-        while(start<end){
-            char tmp=s[start];
-            s[start]=s[end];
-            s[end]=tmp;    
-            start++;
-            end--;
-        }
+        reverse(s,0,s.length-1);
+    }
+    
+    public void reverse(char[] s, int l, int r){
+        if(l>=r)
+            return;
+        char tmp = s[l];
+        s[l]=s[r];
+        s[r]=tmp;
+        //System.out.println("sdcdd -- "+s);
+        reverse(s,l+1,r-1);
     }
 }
