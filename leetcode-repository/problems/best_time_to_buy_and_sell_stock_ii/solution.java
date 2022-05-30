@@ -12,7 +12,7 @@ class Solution {
         }
         
         for(int i=1;i<n;i++){
-            dp = dp  + Math.max(0, prices[i]-prices[i-1]);
+            dp = dp  + Math.max(0, profits[i]-profits[i-1]);
         }
         return dp;
     }
