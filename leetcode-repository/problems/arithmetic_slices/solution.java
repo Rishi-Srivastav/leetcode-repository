@@ -1,32 +1,28 @@
 class Solution {
-    public int numberOfArithmeticSlices(int[] A) {
-        int n = A.length;
+    public int numberOfArithmeticSlices(int[] nums) {
+        int n=nums.length;
         if(n<3)
             return 0;
-        
-        int diff = A[1]-A[0];
-        int count = 1, res = 0;
-        //find biggest array
+        int d=nums[1]-nums[0];
+        int count=1, sum=0;
         for(int i=0;i<n-1;i++){
-           if(A[i+1]-A[i] == diff){
-               count++;    
-           } else {
-               res += getCount(count);
-               count = 2;
-               diff = A[i+1]-A[i];
-           } 
-        }
-        res += getCount(count);
-        return res;
+            if(nums[i+1]==nums[i]+d){
+                count++;
+            } else {
+                sum+=count(count);
+                count=2;
+                d=nums[i+1]-nums[i];
+            }
+            }
+        sum=sum+count(count);
+        return sum;
     }
     
-    
-    public static int getCount(int n){
-        if(n==3)
-            return 1;
-        else if(n<3)
-            return 0;
-        else
-            return (n-2)*(n-1)/2;
-    }
+    public int count(int n){
+      int sum=0;
+      if(n<3) return 0; 
+      if(n==3) return 1;
+      
+        return (n-1)*(n-2)/2;
+}
 }
