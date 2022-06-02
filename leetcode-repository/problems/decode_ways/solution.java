@@ -1,37 +1,28 @@
-class Solution {
-      static char[] letters = {'0', 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-    
-    //2101
-    public static int numDecodings(String s) {
-        int n = s.length();
-        int[] count = new int[n + 1];
-        count[0] = 1;
-        count[1] = 1;
-
-        if(!s.isEmpty() && s.charAt(0) == '0') {
+public class Solution {
+    public int numDecodings(String s) {
+        if (s == null || s.length() == 0) {
             return 0;
         }
-
-        if (s.length() == 0)
-            return 0;
-
+        int n = s.length();
+        int[] dp = new int[n + 1];
+        // When empty string, only 1 way of decoding.
+        dp[0] = 1;
+        //when char at 0 is 0, then 0 ways, else 1
+        dp[1] = s.charAt(0) != '0' ? 1 : 0;
+        
         for (int i = 2; i <= n; i++) {
-
-            if(s.charAt(i-1)=='0' && s.charAt(i-2)=='0')
-                return 0;
-
-            count[i] = count[i - 1];
-
-            if (s.charAt(i - 2) == '1' || (s.charAt(i - 1) < '7' && s.charAt(i - 2) == '2')) {
-                if (s.charAt(i - 1) == '0' || s.charAt(i - 2) == '0' || (i<n && s.charAt(i)=='0'))
-                    count[i] = count[i - 2];
-                else
-                    count[i] += count[i - 2];
-            } else{
-                if(s.charAt(i-1)=='0' && s.charAt(i-2)>'2')
-                    return 0;
+            
+            int first = Integer.valueOf(s.substring(i - 1, i));
+            int second = Integer.valueOf(s.substring(i - 2, i));
+            if (first >= 1 && first <= 9) {
+                //dp[i]=dp[i-1]
+               dp[i] += dp[i-1];  
+            }
+            if (second >= 10 && second <= 26) {
+                //dp[i]=dp[i]+dp[i-2]
+                dp[i] += dp[i-2];
             }
         }
-        return count[n];
-    }     
+        return dp[n];
+    }
 }
