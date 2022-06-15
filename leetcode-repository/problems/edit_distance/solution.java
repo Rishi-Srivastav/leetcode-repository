@@ -24,4 +24,31 @@ public class Solution {
         }
         return cost[m][n];
     }
+    
+    /** My Recursive Solution - 
+    public int minDistance(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
+
+        if(m==0)
+            return n;
+        
+        if(n==0)
+            return m;
+        
+        if(word1.charAt(0)==word2.charAt(0)){
+            return minDistance(word1.substring(1), word2.substring(1));
+        }
+        
+        int insert=1+minDistance(word1, word2.substring(1));
+        
+        int delete= 1+minDistance(word1.substring(1), word2);
+        
+        int replace=1+minDistance(word1.substring(1), word2.substring(1));
+        
+        return Math.min(insert, Math.min(delete, replace));
+    }
+}
+    
+    **/
 }
