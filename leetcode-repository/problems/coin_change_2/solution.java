@@ -9,4 +9,13 @@ class Solution {
         }
         return dp[amount];
     }
+    
+    public int changeRecursive(int amount, int[] coins) {
+        return change(amount, 0, coins);    
+    }
+    private int change(int balance, int cur, int[] coins) {
+        if(balance == 0) return 1;
+        if(balance<0 || cur == coins.length) return 0;
+        return change(balance-coins[cur], cur, coins) + change(balance, cur+1, coins);
+    }
 }
