@@ -1,21 +1,17 @@
 class Solution {
+    //0-1 knapsack problem
+    // one time include ith element, 2nd time don't include
     public int change(int amount, int[] coins) {
-        int[] dp = new int[amount + 1];
-        dp[0] = 1;
-        for (int coin : coins) {
-            for (int i = coin; i <= amount; i++) {
-                dp[i] += dp[i-coin];
+        if(amount==0)
+            return 1;
+        int[][] k = new int[coins.length+1][amount+1];
+        k[0][0]=1;
+        for(int i=1;i<=coins.length;i++){
+            k[i][0]=1;
+            for(int j=1;j<=amount;j++){
+                k[i][j]=  k[i-1][j] + (j>=coins[i-1]? k[i][j-coins[i-1]] : 0);
             }
         }
-        return dp[amount];
-    }
-    
-    public int changeRecursive(int amount, int[] coins) {
-        return change(amount, 0, coins);    
-    }
-    private int change(int balance, int cur, int[] coins) {
-        if(balance == 0) return 1;
-        if(balance<0 || cur == coins.length) return 0;
-        return change(balance-coins[cur], cur, coins) + change(balance, cur+1, coins);
-    }
+        return k[coins.length][amount];
+}
 }
