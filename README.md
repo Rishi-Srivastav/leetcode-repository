@@ -1,7 +1,3 @@
-Absolutely. I checked the repository: it currently contains a `problems` directory, GitHub Actions workflow configuration, and 267 commits, and is described as a collection of LeetCode submissions. ([GitHub][1])
-
-I’d recommend making the README **interview-prep focused**, rather than just saying “Leetcode submissions.” This makes the repository look much more intentional and useful to recruiters/interviewers.
-
 # LeetCode Solutions
 
 A curated collection of my **LeetCode solutions** focused on building strong problem-solving skills across **Data Structures, Algorithms, and Systematic Problem Solving**.
